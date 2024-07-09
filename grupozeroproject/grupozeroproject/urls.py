@@ -14,11 +14,26 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+from django.conf import settings
+# Importa el objeto 'settings' de django.conf para acceder a la configuración del proyecto.
 
+from django.conf.urls.static import static
+# Importa la función 'static' de django.conf.urls.static para servir archivos estáticos y de medios en modo de depuración.
+
+from django.contrib import admin
+# Importa el módulo 'admin' de django.contrib para habilitar la administración del sitio.
+
+from django.urls import path, include
+# 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('storegrupozero.urls')),  # Incluye las rutas de la aplicación 'storegrupozero'
+    path('accounts/', include('django.contrib.auth.urls')),  # Añade las vistas de autenticación de Django
+    ###Etapa 5
+    path('ckeditor', include('ckeditor_uploader.urls')),
 ]
-
+if settings.DEBUG:
+    # Condicional para verificar si el modo de depuración está habilitado.
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # Si el modo de depuración está habilitado, añade las rutas para servir archivos de medios.
+    # URL base: settings.MEDIA_URL, directorio raíz de documentos: settings.MEDIA_ROOT.

@@ -1,0 +1,39 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <style>
+    .project-details {
+      margin: 0 auto;
+      max-width: 900px; /* Ajusta según sea necesario */
+      padding: 20px;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color:  #4b0082;
+    }
+
+    .project-details img {
+      border-radius: 1rem;
+      margin: 20px 0; /* Margen superior e inferior uniforme */
+    }
+
+    .project-details .btn {
+      margin: 10px;
+    }
+  </style>
+  
+  <div class="container mt-5">
+    <div class="project-details text-center">
+      <h2>{{ proyecto.titulo }}</h2>
+      <img src="{{ proyecto.imagen.url }}" alt="{{ proyecto.titulo }}" class="img-fluid rounded mx-auto d-block my-4">
+      <p><strong>Descripción:</strong> {{ proyecto.descripcion }}</p>
+      <div>
+        <h3>Contenido Detallado</h3>
+        <div>{{ proyecto.contenido|safe }}</div>  <!-- Usar el filtro 'safe' para permitir HTML -->
+      </div>
+      <p><strong>Tecnologías:</strong> {{ proyecto.tecnologias.all|join:", " }}</p>
+      <a href="{{ proyecto.link_sitio }}" class="btn btn-primary m-2">Sitio Web</a>
+      <a href="{{ proyecto.link_repositorio }}" class="btn btn-secondary m-2">Repositorio</a>
+    </div>
+  </div>
+{% endblock %}
+

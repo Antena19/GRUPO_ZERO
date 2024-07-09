@@ -1,20 +1,94 @@
-# storegrupozero/views.py
-from django.shortcuts import render
+# Importa decoradores y funciones útiles para la autenticación y manejo de vistas
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
 
+# Importa el formulario de contacto y los modelos Proyecto y Contacto de la aplicación actual
+from .forms import ContactoForm
+from .models import Proyecto, Contacto
+
+
+# Vista para la página de inicio que muestra los proyectos
 def index(request):
-    return render(request, 'index.html')
+    # Obtiene todos los objetos de la clase Proyecto
+    proyectos = Proyecto.objects.all()
+    # Renderiza la plantilla 'index.html' pasando los proyectos como contexto
+    return render(request, 'index.html', {'proyectos': proyectos})
 
-def artistas(request):
-    return render(request, 'artistas.html')
+# Vista para crear un nuevo contacto usando un formulario
+def contacto_nuevo(request):
+    # Si la solicitud es de tipo POST, se procesa el formulario
+    if request.method == "POST":
+        # Se crea una instancia del formulario con los datos enviados
+        form = ContactoForm(request.POST)
+        # Si el formulario es válido, se guarda el nuevo contacto
+        if form.is_valid():
+            form.save()
+            # Redirige a una página de confirmación
+            return redirect('contacto_confirmacion')
+    else:
+        # Si la solicitud no es POST, se crea un formulario vacío
+        form = ContactoForm()
+    # Renderiza la plantilla 'contacto_formulario.html' pasando el formulario como contexto
+    return render(request, 'mycontacto/contacto_formulario.html', {'form': form})
 
-def tecnicas(request):
-    return render(request, 'tecnicas.html')
+# Vista para ver el detalle de un contacto específico, requiere autenticación
+@login_required
+def contacto_detalle(request, pk):
+    # Obtiene el contacto con la clave primaria especificada, o retorna 404 si no se encuentra
+    contacto = get_object_or_404(Contacto, pk=pk)
+    # Renderiza la plantilla 'contacto_detalle.html' pasando el contacto como contexto
+    return render(request, 'mycontacto/contacto_detalle.html', {'contacto': contacto})
 
-def productos(request):
-    return render(request, 'productos.html')
+# Vista para editar un contacto específico, requiere autenticación
+@login_required
+def contacto_editar(request, pk):
+    # Obtiene el contacto con la clave primaria especificada, o retorna 404 si no se encuentra
+    contacto = get_object_or_404(Contacto, pk=pk)
+    # Si la solicitud es de tipo POST, se procesa el formulario
+    if request.method == "POST":
+        # Se crea una instancia del formulario con los datos enviados y el contacto existente
+        form = ContactoForm(request.POST, instance=contacto)
+        # Si el formulario es válido, se guarda el contacto editado
+        if form.is_valid():
+            form.save()
+            # Redirige a la vista de detalle del contacto
+            return redirect('contacto_detalle', pk=contacto.pk)
+    else:
+        # Si la solicitud no es POST, se crea un formulario con los datos del contacto existente
+        form = ContactoForm(instance=contacto)
+    # Renderiza la plantilla 'contacto_editar.html' pasando el formulario como contexto
+    return render(request, 'mycontacto/contacto_editar.html', {'form': form})
 
-def login_view(request):
-    return render(request, 'login.html')
+# Vista para eliminar un contacto específico, requiere autenticación
+@login_required
+def contacto_eliminar(request, pk):
+    # Obtiene el contacto con la clave primaria especificada, o retorna 404 si no se encuentra
+    contacto = get_object_or_404(Contacto, pk=pk)
+    # Elimina el contacto
+    contacto.delete()
+    # Redirige a la vista de lista de contactos
+    return redirect('contacto_lista')
 
-def registro(request):
-    return render(request, 'registro.html')
+# Vista para listar todos los contactos, requiere autenticación
+@login_required
+def contacto_lista(request):
+    # Obtiene todos los objetos de la clase Contacto
+    contactos = Contacto.objects.all()
+    # Renderiza la plantilla 'contacto_lista.html' pasando los contactos como contexto
+    return render(request, 'mycontacto/contacto_lista.html', {'contactos': contactos})  # Cambié la ruta aquí
+
+# Vista de confirmación de contacto
+def contacto_confirmacion(request):
+    # Renderiza la plantilla 'contacto_confirmacion.html'
+    return render(request, 'mycontacto/contacto_confirmacion.html')
+
+# Vista protegida para pruebas
+@login_required
+def vista_protegida(request):
+    return render(request, 'vista_protegida.html')
+
+# Vista para el detalle de un proyecto específico
+def proyecto_detalle(request, pk):
+    proyecto = get_object_or_404(Proyecto, pk=pk)
+    return render(request, 'proyecto_detalle.html', {'proyecto': proyecto})
+

@@ -1,0 +1,45 @@
+{% load bootstrap5 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% bootstrap_css %}
+    <title>{% block title %}Productos{% endblock %}</title>
+      
+    <!-- Favicon -->
+    <link rel="icon" href="{% static '/images/1.png' %}" type="image/png">
+    <style>
+        body {
+            background-image: url('/static/images/fondo.png'); /* Ruta estática completa */
+            background-size: cover; /* Cubre todo el fondo sin distorsión */
+            background-position: center; /* Centra el fondo */
+            background-repeat: no-repeat; /* Evita que se repita el fondo */
+            color: white; /* Color de texto blanco */
+            min-height: 100vh; /* Asegura que el cuerpo tenga al menos el 100% de la altura del viewport */
+            display: flex; /* Usa flexbox para centrar vertical y horizontalmente */
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+            margin: 0; /* Elimina el margen por defecto del body */
+            padding: 0; /* Elimina el padding por defecto del body */
+        }
+        
+        
+    </style>
+<!-- Bloque para incluir CSS adicional -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Enlace al CSS de Font Awesome desde un CDN -->    
+    {% block extra_head %}
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+    
+    {% bootstrap_javascript %}
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
