@@ -1,3 +1,4 @@
+<!-- Ejemplo del HTML de artistas con la ruta correcta -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -84,169 +85,29 @@
     <!-- TITULO PAGINA -->
     <h6 class="h6 text-center m-5">ARTISTAS</h6>
 
-    <!-- DETALLES ARTISTAS-->    
+    <!-- DETALLES ARTISTAS-->
     <div class="container-fluid m-5 p-5">
         <!-- FILA -->
         <div class="row align-items-center">
+            {% for artist in artists %}
             <!-- COLUMNA 1 TARJETA ARTISTA -->
             <div class="col-md-6">
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="{% static 'img/escultora2.jpg' %}" class="img-fluid rounded-start" alt="...">
+                            <img src="{{ artist.image.url }}" class="img-fluid rounded-start" alt="{{ artist.name }}">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">Valentina Morales</h5>
-                                <p class="card-text">Escultora reconocida por sus obras monumentales que adornan los espacios públicos de Puerto Montt. Utilizando materiales como madera, piedra y metal, Valentina da vida a figuras abstractas y simbólicas que reflejan la historia y la identidad cultural de la región. Su arte ha contribuido a embellecer la ciudad y a enriquecer la experiencia visual de quienes la visitan.</p>
+                                <h5 class="card-title">{{ artist.name }}</h5>
+                                <p class="card-text">{{ artist.bio }}</p>
                                 <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- COLUMNA 2 CARRUSEL FOTOS ARTISTA 1 -->
-            <div class="col-md-6">
-                <div id="carouselExampleInterval p-5 m-5" class="carousel-artistas slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="10000">
-                            <img src="{% static 'img/escultora2.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img src="{% static 'img/escultora3.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- COLUMNA 3 TARJETA ARTISTA -->
-            <div class="col-md-6">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{% static 'img/orfebre1.jpg' %}" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Mateo Soto</h5>
-                                <p class="card-text">Hábil orfebre nacido y criado en Puerto Montt, Chile. Inspirado por la belleza natural de su entorno, Mateo combina técnicas tradicionales de orfebrería con diseños contemporáneos para crear piezas únicas de joyería que capturan la esencia de la Patagonia. Su trabajo ha sido reconocido tanto a nivel local como internacional, y sus creaciones se exhiben en galerías de arte y tiendas de moda de todo el mundo.</p>
-                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- COLUMNA 4 CARRUSEL FOTOS ARTISTA 1 -->
-            <div class="col-md-6">
-                <div id="carouselExampleInterval p-5 m-5" class="carousel-artistas slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="10000">
-                            <img src="{% static 'img/orfebre1.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img src="{% static 'img/orfebre2.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- COLUMNA 5 TARJETA ARTISTA -->
-            <div class="col-md-6">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{% static 'img/pintora1.jpg' %}" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Sofia Navarro</h5>
-                                <p class="card-text">Pintora autodidacta cuyas obras reflejan la rica diversidad cultural y paisajística de Puerto Montt y sus alrededores. Desde retratos realistas hasta impresionistas paisajes marinos, Sofia utiliza una paleta vibrante y una técnica expresiva para capturar la esencia de la región. Sus cuadros se han convertido en piezas codiciadas por coleccionistas locales y extranjeros por igual.</p>
-                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- COLUMNA 6 CARRUSEL FOTOS ARTISTA 1 -->
-            <div class="col-md-6">
-                <div id="carouselExampleInterval p-5 m-5" class=carousel-artistas slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="10000">
-                            <img src="{% static 'img/pintora1.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img src="{% static 'img/pintora2.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- COLUMNA 7 TARJETA ARTISTA -->
-            <div class="col-md-6">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{% static 'img/tejedora1.jpg' %}" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Gabriela Ruiz</h5>
-                                <p class="card-text">Gabriela Ruiz es una maestra tejedora cuya pasión por el arte textil se remonta a su infancia en Puerto Montt. Con habilidad y paciencia, Gabriela crea hermosos tapices y mantas que celebran las tradiciones y la artesanía local. Su taller es un lugar de encuentro para la comunidad, donde comparte su experiencia con las generaciones más jóvenes y promueve la preservación de las técnicas ancestrales de tejido.</p>
-                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- COLUMNA 8 CARRUSEL FOTOS ARTISTA 1 -->
-            <div class="col-md-6">
-                <div id="carouselExampleInterval p-5 m-5" class="carousel-artistas slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="10000">
-                            <img src="{% static 'img/tejedora1.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img src="{% static 'img/tejedora2.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 
