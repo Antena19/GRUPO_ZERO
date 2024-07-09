@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +83,7 @@
         </div>
     </nav>
 
-    <!-- PRODUCTOS DETALLE -->
+    {% block content %}
     <h5 class="h5 text-center m-5">PRODUCTOS DESTACADOS</h5>
 
     <!-- TARJETAS DETALLE PRODUCTO -->
@@ -92,12 +94,10 @@
                 <div class="card" style="width: 18rem;">
                     <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                     <div class="card-body">
-                        <p class="card-text">
-                            <strong>Nombre de la obra:</strong> "{{ product.name }}" <br>
-                            <strong>Descripción:</strong> {{ product.description }} <br>
-                            <strong>Precio:</strong> {{ product.price }} CLP <br>
-                            <strong>Artista:</strong> {{ product.artist.name }} <br>
-                            <strong>Técnica usada:</strong> {{ product.technique.name }}
+                        <p class="card-text"><strong>Nombre de la obra:</strong> {{ product.name }} <br>
+                            <strong>Descripción:</strong> {{ product.description|truncatewords:30 }} <br>
+                            <strong>Precio:</strong> ${{ product.price }} <br>
+                            <a href="{% url 'producto_detalle' product.id %}" class="btn btn-primary">Ver Detalles</a>
                         </p>
                     </div>
                 </div>
@@ -105,6 +105,7 @@
             {% endfor %}
         </div>
     </div>
+    {% endblock %}
 
     <!-- VOLVER A INICIO -->
     <div class="container-fluid text-center m-5">
