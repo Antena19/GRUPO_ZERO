@@ -39,9 +39,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storegrupozero',
-    'bootstrap5'
+    'bootstrap5',
+    'jazzmin',
     
 ]
+
+# grupozeroproject/settings.py
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Admin Dashboard",
+    "site_header": "Grupo Zero Admin",
+    "welcome_sign": "Bienvenido a la administración de Grupo Zero",
+    "site_logo": "path/to/logo.png",  # Ruta a tu logo
+    "login_logo": None,  # Logo en la página de login
+    "login_logo_dark": None,  # Logo en modo oscuro
+    "site_icon": None,  # Favicon
+    "show_ui_builder": True,  # Mostrar el builder de UI
+    # Puedes añadir más configuraciones aquí
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,6 +71,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'grupozeroproject.urls'
 
 # Template files
+# grupozeroproject/settings.py
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -71,6 +87,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'grupozeroproject.wsgi.application'
 
@@ -131,3 +148,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Configuraciones de autenticación
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'

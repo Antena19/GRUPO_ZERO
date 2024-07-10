@@ -39,23 +39,17 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# MODELO ÍTEM DEL CARRITO
-class CartItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f'{self.quantity} x {self.product.name}'
-
-# MODELO CARRITO DE COMPRAS
 class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    items = models.ManyToManyField(CartItem)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    session_key = models.CharField(max_length=40, null=True, blank=True)
+    items = models.ManyToManyField('CartItem', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return f'Carrito de {self.user.username}'
+class CartItem(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    session_key = models.CharField(max_length=40, null=True, blank=True)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
