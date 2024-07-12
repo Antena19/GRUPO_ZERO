@@ -11,71 +11,70 @@
     <!-- Link a CSS -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>GRUPO CERO</title>
+    <!-- Estilo para la animación de máquina de escribir y parpadeo de cursor -->
+    <style>
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .15em solid orange;
+            animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: orange; }
+        }
+    </style>
 </head>
 <body>
     <!-- MENÚ CON LOGO -->
-    <!-- BARRA DE NAVEGACIÓN -->
-    <!-- que la barra se expanda-->
     <nav class="navbar navbar-expand-lg">
       <div class="container">
           <a class="navbar-brand" href="#"></a>
           <!-- botón de hamburguesa -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <!--  Este es el ícono que se muestra dentro del botón de hamburguesa. -->
               <span class="navbar-toggler-icon"></span>
-              <!-- BOTONES -->
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav w-100 justify-content-center">
-                  <!-- COLUMNA 1 -->
                   <li class="nav-item mt-3">
-                      <!-- a=crea un enlace/crea una clase=estilo de bootstrap/ iconos en color blanco / link a wsp / icono de wsp-->
                       <a class="nav-link text-white" href="https://wa.me/"><i class="fab fa-whatsapp"></i></a>
                   </li>
-                  <li class="nav-item mt-3 ">
-                      <!-- a=crea un enlace/crea una clase=estilo de bootstrap/ iconos en color blanco / link a facebook/ icono de facebook-->
+                  <li class="nav-item mt-3">
                       <a class="nav-link text-white" href="https://facebook.com/"><i class="fab fa-facebook"></i></a>
                   </li>
                   <li class="nav-item mt-3">
-                      <!-- a=crea un enlace/crea una clase=estilo de bootstrap/ iconos en color blanco / link a instagram/ icono de instagram-->
                       <a class="nav-link text-white" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
                   </li>
-                  <!-- COLUMNA 2 (logo)-->
                   <li class="nav-item d-flex justify-content-center ms-auto">
                       <img class="logo" src="{% static 'img/logo-blanco.png' %}" alt="">
                   </li>
-                  <!-- MENÚ -->
-                  <!-- COLUMNA 3 -->
                   <li class="nav-item d-flex justify-content-center ms-auto mt-3">
-                      <!-- a=crea un enlace/crea una clase=estilo de bootstrap/ icono/texto en color blanco/texto-->
-                      <a class="nav-link text-white" href="{% url 'artistas' %}">Artístas</a>
+                      <a class="nav-link text-white" href="{% url 'artistas' %}">Artistas</a>
                   </li>
-                  <!-- COLUMNA 4 -->
                   <li class="nav-item d-flex justify-content-center ms-auto mt-3">
-                      <!-- a=crea un enlace/crea una clase=estilo de bootstrap/ icono/texto en color blanco/ texto-->
                       <a class="nav-link text-white" href="{% url 'tecnicas' %}">Técnicas</a>
                   </li>
-                  <!-- COLUMNA 5 -->
                   <li class="nav-item d-flex justify-content-center ms-auto mt-3">
-                      <!-- a=crea un enlace/crea una clase=estilo de bootstrap/ icono/texto en color blanco/ texto-->
                       <a class="nav-link text-white" href="{% url 'productos' %}">Productos</a>
                   </li>
-                  <!-- COLUMNA 6 -->
                   <li class="nav-item d-flex justify-content-center ms-auto mt-3">
-                    <!-- a=crea un enlace/crea una clase=estilo de bootstrap/ icono/texto en color blanco/ texto-->
-                    <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
-                </li>
-                <!-- COLUMNA 7 -->
-                <li class="nav-item d-flex justify-content-center ms-auto mt-3">
-                  <!-- a=crea un enlace/crea una clase=estilo de bootstrap/ icono/texto en color blanco/ texto-->
-                  <a class="nav-link text-white" href="{% url 'registro' %}">Registro</a>
-                <!-- COLUMNA 8 -->
-                <li class="nav-item justify-content-center ms-auto mt-3">
-                  <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-success btn-buscar" type="submit">Buscar</button>
-                  </form>
-                </li>
+                      <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+                  </li>
+                  <li class="nav-item d-flex justify-content-center ms-auto mt-3">
+                      <a class="nav-link text-white" href="{% url 'registro' %}">Registro</a>
+                  <li class="nav-item justify-content-center ms-auto mt-3">
+                      <form class="d-flex" role="search">
+                          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                          <button class="btn btn-success btn-buscar" type="submit">Buscar</button>
+                      </form>
+                  </li>
               </ul>
           </div>
       </div>
@@ -90,8 +89,9 @@
           <div class="card">
             <img src="{% static 'img/pintura3.jpg' %}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">PINTURA</h5>
+              <h5 class="card-title"><span class="typewriter">PINTURA</span></h5>
               <p class="card-text">Técnica artística que utiliza pigmentos aplicados sobre una superficie, generalmente lienzo, papel o muro, mediante pinceles, espátulas u otros utensilios. La pintura puede abordar una amplia variedad de temas y estilos, desde paisajes naturales hasta abstracciones abstractas, y se ha utilizado a lo largo de la historia como medio de expresión personal, comunicación cultural y registro histórico.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detallePinturaModal">Ver Detalle</button>
             </div>
           </div>
         </div>
@@ -99,8 +99,9 @@
           <div class="card">
             <img src="{% static 'img/orfebre2.jpg' %}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">ORFEBRERÍA</h5>
+              <h5 class="card-title"><span class="typewriter">ORFEBRERÍA</span></h5>
               <p class="card-text">Arte de trabajar metales preciosos como oro, plata y bronce para crear objetos decorativos o funcionales, como joyas, candelabros o reliquias religiosas. Se caracteriza por su meticulosa atención al detalle y la habilidad en el manejo de herramientas especializadas como el martillo, el buril y el soldador.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleOrfebreriaModal">Ver Detalle</button>
             </div>
           </div>
         </div>
@@ -108,8 +109,9 @@
           <div class="card">
             <img src="{% static 'img/tejido2.jpg' %}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">TEJIDO</h5>
+              <h5 class="card-title"><span class="typewriter">TEJIDO</span></h5>
               <p class="card-text">Arte de entrelazar hilos, ya sea a mano o en telares, para crear textiles como telas, tapices, alfombras y prendas de vestir. Esta técnica puede implicar una amplia gama de materiales, desde fibras naturales como algodón y lana hasta sintéticas como el poliéster, y se caracteriza por su variedad de patrones y texturas.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleTejidoModal">Ver Detalle</button>
             </div>
           </div>
         </div>
@@ -117,15 +119,92 @@
           <div class="card">
             <img src="{% static 'img/escultura3.jpg' %}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">ESCULTURA</h5>
+              <h5 class="card-title"><span class="typewriter">ESCULTURA</span></h5>
               <p class="card-text">Arte de crear formas tridimensionales mediante la manipulación de materiales como piedra, madera, metal, arcilla o yeso. Las esculturas pueden ser abstractas o figurativas y pueden variar en tamaño desde pequeñas estatuillas hasta monumentos monumentales. Esta forma de arte ha existido desde tiempos prehistóricos y ha evolucionado a lo largo de la historia, reflejando las creencias, valores y estilos estéticos de diversas culturas.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleEsculturaModal">Ver Detalle</button>
             </div>
           </div>
         </div>
       </div>
 
+<!-- Modales -->
+<div class="modal fade" id="detallePinturaModal" tabindex="-1" aria-labelledby="detallePinturaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detallePinturaModalLabel">Pintura</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="{% static 'img/pintura_detalle.jpg' %}" class="img-fluid" alt="...">
+        <p>La pintura es una de las formas de arte más antiguas y universales, utilizada por diversas culturas a lo largo de la historia para comunicar ideas, emociones y narrativas. Se puede clasificar en diversos estilos, como el realismo, impresionismo, expresionismo, surrealismo, entre otros. Cada estilo se distingue por su técnica, enfoque temático y uso del color y la luz.</p>
+        <p>En la actualidad, la pintura sigue siendo una herramienta vital para la expresión personal y la exploración de nuevos conceptos artísticos. Los artistas modernos continúan desafiando las convenciones y expandiendo los límites de este medio.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="detalleOrfebreriaModal" tabindex="-1" aria-labelledby="detalleOrfebreriaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detalleOrfebreriaModalLabel">Orfebrería</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="{% static 'img/orfebreria_detalle.jpg' %}" class="img-fluid" alt="...">
+        <p>La orfebrería no solo abarca la creación de joyas, sino también la elaboración de objetos ceremoniales y decorativos que han jugado un papel importante en diversas culturas. Las técnicas de orfebrería incluyen el grabado, la filigrana, el cincelado y el repujado. Cada técnica requiere una gran habilidad y precisión para lograr los intrincados detalles que caracterizan estas piezas.</p>
+        <p>Hoy en día, los orfebres continúan innovando, utilizando tanto técnicas tradicionales como nuevas tecnologías para crear piezas únicas y contemporáneas que siguen sorprendiendo y encantando al público.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="detalleTejidoModal" tabindex="-1" aria-labelledby="detalleTejidoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detalleTejidoModalLabel">Tejido</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="{% static 'img/tejido_detalle.jpg' %}" class="img-fluid" alt="...">
+        <p>El tejido es una práctica que se ha desarrollado en diferentes culturas a lo largo de los siglos. Desde los antiguos tejidos andinos hasta los modernos diseños textiles, esta técnica ha evolucionado adaptándose a los cambios en materiales y estilos. Los tejidos pueden ser funcionales o decorativos, y cada pieza puede contar una historia a través de sus patrones y colores.</p>
+        <p>En el mundo contemporáneo, el tejido ha encontrado un nuevo resurgir en la moda y el arte, con artistas y diseñadores que exploran nuevas posibilidades y técnicas para crear textiles innovadores y expresivos.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="detalleEsculturaModal" tabindex="-1" aria-labelledby="detalleEsculturaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detalleEsculturaModalLabel">Escultura</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="{% static 'img/escultura_detalle.jpg' %}" class="img-fluid" alt="...">
+        <p>La escultura ha sido una forma de expresión artística utilizada desde la prehistoria, con ejemplos que van desde las pequeñas figurillas hasta los grandes monumentos. Los materiales y técnicas han evolucionado, pero el propósito de la escultura de representar la forma y el espacio en tres dimensiones sigue siendo el mismo. Las esculturas pueden ser abstractas o figurativas, reflejando las tendencias y valores de la época en que fueron creadas.</p>
+        <p>Los escultores modernos experimentan con nuevos materiales y métodos, empujando los límites del arte tridimensional y explorando nuevas formas de interacción con el espacio y el espectador.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FORMULARIO DE CONTACTO -->
-<!-- CONTACTANOS -->
 <form class="formulario formulario-contacto d-flex flex-column align-items-center text-white">
   <h4 class="h4">CONTÁCTANOS</h4>      
   <!-- fila 1 -->
@@ -148,9 +227,7 @@
       <div class="cont row">
           <!-- columna única -->
           <div class="col-12">
-              <!-- Etiqueta "Mensaje" -->
               <label for="mensaje" class="form-label">Mensaje</label>
-              <!-- Cuadro de texto "Mensaje" -->
               <textarea class="form-control" id="mensaje" rows="3"></textarea>
           </div>
       </div>
@@ -159,9 +236,8 @@
   <button type="submit" class="btn btn-lg btn-success mt-5">Enviar</button>
 </form>     
 
-   
-  <!-- PIE DE PAGINA -->
-  <footer class="fin text-center p-5">
+<!-- PIE DE PAGINA -->
+<footer class="fin text-center p-5">
     <img class="logo2" src="{% static 'img/logo-blanco.png' %}" alt="">
     <p class="text-white m-5">
         <i class="fas fa-copyright text-white"></i>
@@ -169,7 +245,21 @@
     </p>
 </footer>
 
-    <!-- SCRIPT DE FUNCIONALIDAD -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" ></script>
+<!-- SCRIPT DE FUNCIONALIDAD -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script para reiniciar la animación -->
+<script>
+    const typewriters = document.querySelectorAll('.typewriter');
+    typewriters.forEach(typewriter => {
+        typewriter.innerHTML = `<span>${typewriter.textContent}</span>`;
+        typewriter.addEventListener('animationiteration', () => {
+            typewriter.style.animation = 'none';
+            setTimeout(() => {
+                typewriter.style.animation = '';
+            }, 10);
+        });
+    });
+</script>
 </body>
 </html>
