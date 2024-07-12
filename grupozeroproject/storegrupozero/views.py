@@ -1,5 +1,7 @@
 # storegrupozero/views.py
 from django.shortcuts import render
+from django.http import HttpResponse
+
 
 def index(request):
     return render(request, 'index.html')
@@ -15,6 +17,3 @@ def productos(request):
 
 def login_view(request):
     return render(request, 'login.html')
-
-def registro(request):
-    return render(request, 'registro.html')
