@@ -7,44 +7,51 @@
     --color3: #19302b;
     --color4: #0b1416;
     --color5: #fefefe;
+    --bg-light: #ffffff;
+    --text-light: #000000;
+    --bg-dark: #333333;
+    --text-dark: #ffffff;
+    --nav-bg-dark: #222222;
+    --input-bg-dark: #555555;
+    --input-border-dark: #666666;
 }
 
-/* PAG INICIO (INDEX) */
-/* COLOR FONDO NARVAR */
+body {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    transition: background-color 0.3s, color 0.3s;
+}
+
 .navbar {
-    background-color: #19302b;
+    background-color: var(--color3);
 }
 
-/* TAMAÑO LOGO EN NARVAR */
 .logo {
     height: 70px;
 }
 
 .navbar-nav .nav-link {
-    font-size: 20px; /* Tamaño de la letra */
-    font-family: "Playfair Display", serif; /* Cambiar la fuente */
+    font-size: 20px;
+    font-family: "Playfair Display", serif;
 }
 
 .navbar-nav .nav-link:hover {
-    color: gray !important; /* Cambia el color del texto al pasar el ratón sobre el enlace */
-    /*  important css tiene prioridad */
+    color: #808080;
 }
 
 .navbar-nav .nav-link i {
-    font-size: 24px; /* Tamaño del icono */
+    font-size: 24px;
 }
 
-/* tamaño y estilo titulo */
 .subtitulos {
     color: var(--color3);
-    font-size: 50px;
     font-family: "Playfair Display", serif;
-    text-decoration: none; /* Quita el subrayado */
+    text-decoration: none;
     font-size: 40px;
 }
 
 .subtitulos:hover {
-    color: gray;
+    color: #808080;
     margin-top: 30%;
 }
 
@@ -119,8 +126,6 @@
     font-family: "Playfair Display", serif; /* Cambiar la fuente */
 }
 
-
-
 .cont {
     margin-left: 20%;
     margin-right: 20%;
@@ -157,4 +162,208 @@
 .h6 {
     font-size: 50px;
     font-family: "Playfair Display", serif;
+}
+
+#tema-toggle {
+    background-color: transparent !important;
+    border: 1px solid white; /* Borde visible */
+    color: white; /* Color del texto */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    position: absolute;
+    top: 30px; /* Ajusta según sea necesario */
+    right: 10px; /* Ajusta según sea necesario */
+    padding: 2px 5px; /* Añadir relleno para hacer clic más fácilmente */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 10px; /* Tamaño de fuente más pequeño */
+}
+
+#tema-toggle::after {
+    content: 'Cambiar\nTema'; /* Texto del recuadro en dos líneas */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente blanco */
+    color: black; /* Color del texto */
+    padding: 2px 5px; /* Relleno del recuadro */
+    border-radius: 5px; /* Bordes redondeados */
+    position: absolute;
+    top: 100%; /* Coloca el recuadro debajo del botón */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: pre-wrap; /* Permitir saltos de línea */
+    opacity: 0; /* Oculta inicialmente */
+    transition: opacity 0.3s ease-in-out; /* Transición suave */
+    font-size: 8px; /* Tamaño de fuente más pequeño */
+}
+
+#tema-toggle:hover::after {
+    opacity: 1; /* Muestra el recuadro al pasar el ratón */
+}
+
+#tema-toggle:hover {
+    color: white; /* Cambia este valor según el color que quieras al pasar el ratón */
+    border-color: white; /* Cambia el color del borde al pasar el ratón */
+}
+
+body.tema-oscuro {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+body.tema-oscuro .navbar,
+body.tema-oscuro .fin,
+body.tema-oscuro .formulario-contacto,
+body.tema-oscuro .container-fluid,
+body.tema-oscuro .carousel {
+    background-color: var(--nav-bg-dark);
+}
+
+body.tema-oscuro .nav-link,
+body.tema-oscuro .navbar-nav .nav-link,
+body.tema-oscuro .h5,
+body.tema-oscuro .parrafo,
+body.tema-oscuro .subtitulos,
+body.tema-oscuro .detalle,
+body.tema-oscuro .h3,
+body.tema-oscuro .h4,
+body.tema-oscuro .form-label,
+body.tema-oscuro .btn-light,
+body.tema-oscuro .carousel-caption {
+    color: var(--text-dark) !important;
+}
+
+body.tema-oscuro .form-control,
+body.tema-oscuro .btn-light {
+    background-color: var(--input-bg-dark);
+    color: var(--text-dark);
+    border-color: var(--input-border-dark);
+}
+
+body.tema-oscuro .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+body.tema-oscuro .carousel-item img {
+    filter: brightness(0.8);
+}
+
+body.tema-oscuro .bg-light {
+    background-color: var(--nav-bg-dark) !important;
+}
+
+body.tema-oscuro .text-dark {
+    color: var(--text-dark) !important;
+}
+
+body.tema-oscuro .btn {
+    background-color: var(--color2);
+    color: var(--text-dark);
+}
+
+/* Estilos para los resultados de búsqueda */
+#resultados-busqueda {
+    margin-top: 20px;
+}
+
+#resultados-busqueda div {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#resultados-busqueda h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+#resultados-busqueda p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+#resultados-busqueda a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+#resultados-busqueda a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .subtitulos {
+        font-size: 35px;
+    }
+    .h5 {
+        font-size: 45px;
+    }
+    .h6 {
+        font-size: 45px;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar-nav .nav-link {
+        font-size: 18px;
+    }
+    .subtitulos {
+        font-size: 30px;
+    }
+    .h5 {
+        font-size: 40px;
+    }
+    .h6 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        font-size: 16px;
+    }
+    .subtitulos {
+        font-size: 25px;
+    }
+    .h5 {
+        font-size: 35px;
+    }
+    .h6 {
+        font-size: 35px;
+    }
+    .cont {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .logo {
+        height: 50px;
+    }
+    .logo2 {
+        height: 100px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-nav .nav-link {
+        font-size: 14px;
+    }
+    .subtitulos {
+        font-size: 20px;
+    }
+    .h5 {
+        font-size: 30px;
+    }
+    .h6 {
+        font-size: 30px;
+    }
+    .cont {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .logo {
+        height: 40px;
+    }
+    .logo2 {
+        height: 80px;
+    }
 }
